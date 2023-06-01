@@ -2,8 +2,10 @@ let input = document.getElementById("input");
 let button = document.getElementById("button");
 let resultContainer = document.querySelector(".result-container");
 let key = "bfc08b9e";
+let loader = document.querySelector(".loader");
 
 async function getFilm() {
+  showLoadingScreen();
   let film = input.value.trim();
   let url = `https://www.omdbapi.com/?apikey=${key}&t=${film}`;
 
@@ -12,6 +14,7 @@ async function getFilm() {
 
   if (film.length <= 0) {
     resultContainer.innerHTML = `<h3 class ="text-center mx-auto text-xl">Please enter a valid film name</h3>`;
+    hideLoadingScreen();
   } else {
     try {
       resultContainer.innerHTML = `
@@ -49,8 +52,18 @@ async function getFilm() {
     `;
     } catch (error) {
       resultContainer.innerHTML = `<h3 class ="text-center text-xl">Please enter a valid film name</h3>`;
+      hideLoadingScreen();
     }
+    hideLoadingScreen();
     input.value = "";
   }
 }
 button.addEventListener("click", getFilm);
+
+function showLoadingScreen() {
+  loader.style.display = "block";
+}
+
+function hideLoadingScreen() {
+  loader.style.display = "none";
+}
