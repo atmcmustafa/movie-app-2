@@ -5,7 +5,7 @@ let key = "bfc08b9e";
 
 async function getFilm() {
   let film = input.value.trim();
-  let url = `http://www.omdbapi.com/?apikey=${key}&t=${film}`;
+  let url = `https://www.omdbapi.com/?apikey=${key}&t=${film}`;
 
   const response = await fetch(url);
   const data = await response.json();
